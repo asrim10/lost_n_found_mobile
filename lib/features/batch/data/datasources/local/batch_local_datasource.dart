@@ -28,20 +28,30 @@ class BatchLocalDatasource implements IBatchDatasource {
   }
 
   @override
-  Future<List<BatchHiveModel>> getAllBatches() {
-    // TODO: implement getAllBatches
-    throw UnimplementedError();
+  Future<List<BatchHiveModel>> getAllBatches() async {
+    try {
+      return _hiveService.getAllBatches();
+    } catch (e) {
+      return [];
+    }
   }
 
   @override
-  Future<BatchHiveModel> getBatchById(String batchId) {
-    // TODO: implement getBatchId
-    throw UnimplementedError();
+  Future<BatchHiveModel?> getBatchById(String batchId) async {
+    try {
+      return _hiveService.getBatchById(batchId);
+    } catch (e) {
+      return null;
+    }
   }
 
   @override
-  Future<bool> updateBatch(BatchHiveModel batch) {
-    // TODO: implement updateBatch
-    throw UnimplementedError();
+  Future<bool> updateBatch(BatchHiveModel batch) async {
+    try {
+      _hiveService.updateBatch(batch);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
