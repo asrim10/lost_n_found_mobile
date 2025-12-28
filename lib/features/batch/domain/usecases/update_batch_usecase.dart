@@ -8,7 +8,7 @@ import 'package:lost_n_found/features/batch/domain/repositories/batch_repository
 class UpdateBatchUsecaseParams extends Equatable {
   final String batchId;
   final String batchName;
-  final String status;
+  final String? status;
 
   const UpdateBatchUsecaseParams({
     required this.batchId,

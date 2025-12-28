@@ -19,5 +19,79 @@ class BatchViewmodel extends Notifier<BatchState> {
 
   Future<void> getAllBatches() async {
     state = state.copyWith(status: BatchStatus.lodaing);
+    final result = await _getAllBatchUsecase();
+
+    result.fold(
+      (failure) => state = state.copyWith(
+        status: BatchStatus.error,
+        errorMessage: failure.message,
+      ),
+      (batches) =>
+          state = state.copyWith(status: BatchStatus.loaded, batches: batches),
+    );
+  }
+
+  Future<void> createBatch(String batchName) async {
+    state = state.copyWith(status: BatchStatus.lodaing);
+
+    final result = await _createBatchUsecase(
+      CreateBatchUsecaseParams(batchName: batchName),
+    );
+    result.fold(
+      (failure) => state = state.copyWith(
+        status: BatchStatus.error,
+        errorMessage: failure.message,
+      ),
+      (_) {
+        state = state.copyWith(status: BatchStatus.created);
+        getAllBatches();
+      },
+    );
+  }
+
+  Future<void> updateBatch({
+    required String batchId,
+    required String batchName,
+    String? status,
+  }) async {
+    state = state.copyWith(status: BatchStatus.lodaing);
+
+    final result = await _updateBatchUsecase(
+      UpdateBatchUsecaseParams(
+        batchId: batchId,
+        batchName: batchName,
+        status: status,
+      ),
+    );
+
+    result.fold(
+      (failure) => state = state.copyWith(
+        status: BatchStatus.error,
+        errorMessage: failure.message,
+      ),
+      (_) {
+        state = state.copyWith(status: BatchStatus.updated);
+        getAllBatches();
+      },
+    );
+  }
+
+  Future<void> deleteBranch(String batchId) async {
+    state = state.copyWith(status: BatchStatus.lodaing);
+
+    final result = await _deleteBatchUsecase(
+      DeleteBatchUsecaseParams(batchId: batchId),
+    );
+
+    result.fold(
+      (failure) => state = state.copyWith(
+        status: BatchStatus.error,
+        errorMessage: failure.message,
+      ),
+      (_) {
+        state = state.copyWith(status: BatchStatus.deleted);
+        getAllBatches();
+      },
+    );
   }
 }
