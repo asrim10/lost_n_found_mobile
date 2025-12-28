@@ -1,4 +1,4 @@
-import 'package:either_dart/src/either.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lost_n_found/core/error/failures.dart';
 import 'package:lost_n_found/core/usecases/app_usecase.dart';
@@ -21,7 +21,7 @@ class UpdateBatchUsecaseParams extends Equatable {
 }
 
 class UpdateBatchUsecase
-    implements UsecaseWithParams<bool, UpdateBatchUsecase> {
+    implements UsecaseWithParams<bool, UpdateBatchUsecaseParams> {
   final IBatchRepository _batchRepository;
   UpdateBatchUsecase(this._batchRepository);
 

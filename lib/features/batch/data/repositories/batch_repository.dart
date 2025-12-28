@@ -1,4 +1,4 @@
-import 'package:either_dart/src/either.dart';
+import 'package:dartz/dartz.dart';
 import 'package:lost_n_found/core/error/failures.dart';
 import 'package:lost_n_found/features/batch/data/datasources/batch_datasource.dart';
 import 'package:lost_n_found/features/batch/data/models/batch_hive_model.dart';
@@ -69,8 +69,18 @@ class BatchRepository implements IBatchRepository {
   }
 
   @override
-  Future<Either<Failures, bool>> updateBatch(BatchEntity batch) {
-    // TODO: implement updateBatch
-    throw UnimplementedError();
+  Future<Either<Failures, bool>> updateBatch(BatchEntity batch) async {
+    try {
+      final model = BatchHiveModel.fromEntity(batch);
+      final result = await _batchDatasource.updateBatch(model);
+      if (result) {
+        return const Right(true);
+      }
+      return const Left(
+        LocalDatabaseFailure(message: 'Failed to update batch'),
+      );
+    } catch (e) {
+      return Left(LocalDatabaseFailure(message: e.toString()));
+    }
   }
 }
