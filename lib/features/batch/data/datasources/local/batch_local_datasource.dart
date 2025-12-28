@@ -34,7 +34,7 @@ class BatchLocalDatasource implements IBatchDatasource {
   }
 
   @override
-  Future<BatchHiveModel> getBatchId(String batchId) {
+  Future<BatchHiveModel> getBatchById(String batchId) {
     // TODO: implement getBatchId
     throw UnimplementedError();
   }
