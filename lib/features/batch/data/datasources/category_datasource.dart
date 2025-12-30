@@ -5,5 +5,5 @@ abstract interface class ICatregoryDataSource {
   Future<CategoryHiveModel?> getCategoryById(String categoryId);
   Future<bool> createCategory(CategoryHiveModel category);
   Future<bool> updateCategory(CategoryHiveModel category);
-  Future<bool> deleteCategory(String category);
+  Future<bool> deleteCategory(String categoryId);
 }

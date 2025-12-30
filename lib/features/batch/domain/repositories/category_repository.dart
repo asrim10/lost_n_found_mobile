@@ -7,5 +7,5 @@ abstract interface class ICategoryRepository {
   Future<Either<Failures, CategoryEntity>> getCategoryById(String categoryId);
   Future<Either<Failures, bool>> createCategory(CategoryEntity category);
   Future<Either<Failures, bool>> updateCategory(CategoryEntity category);
-  Future<Either<Failures, bool>> deleteCategory(String category);
+  Future<Either<Failures, bool>> deleteCategory(String categoryId);
 }
