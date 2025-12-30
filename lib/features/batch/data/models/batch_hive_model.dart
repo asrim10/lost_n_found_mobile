@@ -3,9 +3,9 @@ import 'package:lost_n_found/core/constants/hive_table_constant.dart';
 import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:uuid/uuid.dart';
 
-//dart run buid_runner build --delete-conflicting-outputs
+//dart run build_runner build --delete-conflicting-outputs
 //OR
-//dart run buid_runner build -d
+//dart run build_runner build -d
 part 'batch_hive_model.g.dart';
 
 @HiveType(typeId: HiveTableConstant.batchTypeId)

@@ -3,13 +3,13 @@ import 'package:equatable/equatable.dart';
 class CategoryEntity extends Equatable {
   final String? categoryId;
   final String categoryName;
-  final String? categoryDesc;
+  final String categoryDesc;
   final String? status;
 
   const CategoryEntity({
     this.categoryId,
     required this.categoryName,
-    this.categoryDesc,
+    required this.categoryDesc,
     this.status,
   });
 
