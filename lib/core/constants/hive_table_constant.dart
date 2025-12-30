@@ -12,7 +12,8 @@ class HiveTableConstant {
 
   static const int itemTypeId = 2;
   static const String itemTable = 'item_table';
-  static const int categotyTypeId = 3;
+
+  static const int categoryTypeId = 3;
   static const String categoryTable = 'category_table';
 
   static const int commentsTypeId = 4;
