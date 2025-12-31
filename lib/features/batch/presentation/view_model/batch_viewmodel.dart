@@ -5,6 +5,10 @@ import 'package:lost_n_found/features/batch/domain/usecases/get_all_batch_usecas
 import 'package:lost_n_found/features/batch/domain/usecases/update_batch_usecase.dart';
 import 'package:lost_n_found/features/batch/presentation/state/batch_state.dart';
 
+final batchViewModelProvider = NotifierProvider<BatchViewmodel, BatchState>(() {
+  return BatchViewmodel();
+});
+
 class BatchViewmodel extends Notifier<BatchState> {
   late final GetAllBatchUsecase _getAllBatchUsecase;
   late final CreateBatchUsecase _createBatchUsecase;
@@ -14,11 +18,14 @@ class BatchViewmodel extends Notifier<BatchState> {
   @override
   BatchState build() {
     // Initialize the usecases here using ref, which we will do later
+    _getAllBatchUsecase = ref.read(getAllBatchUsecaseProvider);
+    _updateBatchUsecase = ref.read(updateBatchUsecaseProvider);
+    _createBatchUsecase = ref.read(createBatchUsecaseProvider);
     return const BatchState();
   }
 
   Future<void> getAllBatches() async {
-    state = state.copyWith(status: BatchStatus.lodaing);
+    state = state.copyWith(status: BatchStatus.loading);
     final result = await _getAllBatchUsecase();
 
     result.fold(
@@ -32,7 +39,7 @@ class BatchViewmodel extends Notifier<BatchState> {
   }
 
   Future<void> createBatch(String batchName) async {
-    state = state.copyWith(status: BatchStatus.lodaing);
+    state = state.copyWith(status: BatchStatus.loading);
 
     final result = await _createBatchUsecase(
       CreateBatchUsecaseParams(batchName: batchName),
@@ -54,7 +61,7 @@ class BatchViewmodel extends Notifier<BatchState> {
     required String batchName,
     String? status,
   }) async {
-    state = state.copyWith(status: BatchStatus.lodaing);
+    state = state.copyWith(status: BatchStatus.loading);
 
     final result = await _updateBatchUsecase(
       UpdateBatchUsecaseParams(
@@ -77,7 +84,7 @@ class BatchViewmodel extends Notifier<BatchState> {
   }
 
   Future<void> deleteBranch(String batchId) async {
-    state = state.copyWith(status: BatchStatus.lodaing);
+    state = state.copyWith(status: BatchStatus.loading);
 
     final result = await _deleteBatchUsecase(
       DeleteBatchUsecaseParams(batchId: batchId),

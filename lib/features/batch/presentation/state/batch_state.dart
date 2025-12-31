@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 
-enum BatchStatus { initial, lodaing, loaded, error, created, updated, deleted }
+enum BatchStatus { initial, loading, loaded, error, created, updated, deleted }
 
 class BatchState extends Equatable {
   final BatchStatus status;
