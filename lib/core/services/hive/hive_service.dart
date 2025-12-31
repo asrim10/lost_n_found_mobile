@@ -17,6 +17,27 @@ class HiveService {
     Hive.init(path);
     _registerAdapters();
     await _openBoxes;
+    await insertDummybatches();
+  }
+
+  Future<void> insertDummybatches() async {
+    final box = await Hive.openBox<BatchHiveModel>(
+      HiveTableConstant.batchTable,
+    );
+    if (box.isNotEmpty) {
+      return;
+    }
+
+    final dummyBatches = [
+      BatchHiveModel(batchName: '35-A'),
+      BatchHiveModel(batchName: '35-B'),
+      BatchHiveModel(batchName: '35-C'),
+      BatchHiveModel(batchName: '35-D'),
+      BatchHiveModel(batchName: '35-E'),
+    ];
+    for (var batch in dummyBatches) {
+      await box.put(batch.batchId, batch);
+    }
   }
 
   //Register all type adapters
