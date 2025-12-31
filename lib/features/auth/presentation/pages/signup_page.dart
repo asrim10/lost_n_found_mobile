@@ -288,9 +288,11 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                   // Batch Selection
                   DropdownButtonFormField<String>(
                     initialValue: _selectedBatch,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Select Batch',
-                      hintText: 'Choose your batch',
+                      hintText: batchState.status == BatchStatus.loading
+                          ? 'Loading batches...'
+                          : 'Choose your batch',
                       prefixIcon: Icon(Icons.school_rounded),
                     ),
                     items: _batches.map((batch) {
