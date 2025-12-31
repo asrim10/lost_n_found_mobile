@@ -51,7 +51,7 @@ class AuthHiveModel extends HiveObject {
   }
 
   //To Entity
-  AuthEntity toEntity(BatchEntity? batchEntity) {
+  AuthEntity toEntity({BatchEntity? batchEntity}) {
     return AuthEntity(
       authId: authId,
       fullName: fullName,
@@ -70,6 +70,6 @@ class AuthHiveModel extends HiveObject {
     List<AuthHiveModel> models, {
     BatchEntity? batchEntity,
   }) {
-    return models.map((model) => model.toEntity(batchEntity)).toList();
+    return models.map((model) => model.toEntity()).toList();
   }
 }
