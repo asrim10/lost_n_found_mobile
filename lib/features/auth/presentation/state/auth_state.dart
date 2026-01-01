@@ -1,14 +1,25 @@
 import 'package:equatable/equatable.dart';
 import 'package:lost_n_found/features/auth/domain/entities/auth_entity.dart';
 
-enum AuthStatus { initial, authenticated, unauthenticated, loading, error }
+enum AuthStatus {
+  initial,
+  authenticated,
+  unauthenticated,
+  loading,
+  registered,
+  error,
+}
 
 class AuthState extends Equatable {
   final AuthStatus status;
   final AuthEntity? authEntity;
   final String? errorMessage;
 
-  const AuthState({required this.status, this.authEntity, this.errorMessage});
+  const AuthState({
+    this.status = AuthStatus.initial,
+    this.authEntity,
+    this.errorMessage,
+  });
 
   AuthState copyWith({
     AuthStatus? status,
