@@ -26,7 +26,7 @@ class AuthRepository implements IAuthRepository {
         final entity = user.toEntity();
         return Right(entity);
       }
-      return (Left(LocalDatabaseFailure(message: 'Failed to logout user')));
+      return (Left(LocalDatabaseFailure(message: 'No current user found')));
     } catch (e) {
       return (Left(LocalDatabaseFailure(message: e.toString())));
     }
@@ -43,7 +43,7 @@ class AuthRepository implements IAuthRepository {
         final entity = user.toEntity();
         return Right(entity);
       }
-      return (Left(LocalDatabaseFailure(message: 'Failed to logout user')));
+      return (Left(LocalDatabaseFailure(message: 'Invalid email or password')));
     } catch (e) {
       return (Left(LocalDatabaseFailure(message: e.toString())));
     }
