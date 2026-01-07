@@ -28,14 +28,14 @@ class UserSessionService {
   static const String _keysUserProfileImage = 'user_profile_image';
 
   //Store user session data
-  Future<void> storeUserSession({
+  Future<void> saveUserSession({
     required String userId,
     required String userEmail,
     required String username,
     required String fullName,
     required String? phoneNumber,
     required String? batchId,
-    String? profileImage,
+    String? profilePicture,
   }) async {
     await _prefs.setBool(_keysIsLoggedIn, true);
     await _prefs.setString(_keysUserId, userId);
@@ -48,8 +48,8 @@ class UserSessionService {
     if (batchId != null) {
       await _prefs.setString(_keysUserBatchId, batchId);
     }
-    if (profileImage != null) {
-      await _prefs.setString(_keysUserProfileImage, profileImage);
+    if (profilePicture != null) {
+      await _prefs.setString(_keysUserProfileImage, profilePicture);
     }
   }
 
