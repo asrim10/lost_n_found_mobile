@@ -1,7 +1,4 @@
 import 'dart:io';
-import 'dart:nativewrappers/_internal/vm/bin/common_patch.dart'
-    hide InternetAddress;
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -35,7 +32,7 @@ class NetworkInfo implements INetworkInfo {
     try {
       final result = await InternetAddress.lookup('google.com');
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
-    } on SocketException catch (e) {
+    } on SocketException catch (_) {
       return false;
     }
   }

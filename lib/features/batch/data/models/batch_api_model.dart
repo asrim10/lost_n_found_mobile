@@ -7,12 +7,12 @@ class BatchApiModel {
 
   BatchApiModel({required this.batchName, this.id, this.status});
   //toJSON
-  Map<String, dynamic> toJSON() {
+  Map<String, dynamic> toJson() {
     return {"batchName": batchName};
   }
 
   //fromJSON
-  factory BatchApiModel.fromJSON(Map<String, dynamic> json) {
+  factory BatchApiModel.fromJson(Map<String, dynamic> json) {
     return BatchApiModel(
       id: json['_id'] as String,
       batchName: json["batchName"] as String,
