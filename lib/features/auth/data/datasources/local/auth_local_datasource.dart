@@ -14,7 +14,7 @@ final authLocalDatasourceProvider = Provider<AuthLocalDatasource>((ref) {
   );
 });
 
-class AuthLocalDatasource implements IAuthLocalDatasource {
+class AuthLocalDatasource implements IAuthDatasource {
   final HiveService _hiveService;
   final UserSessionService _userSessionService;
 
