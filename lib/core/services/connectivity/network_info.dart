@@ -27,6 +27,8 @@ class NetworkInfo implements INetworkInfo {
       return false;
     }
     return await _sachhiKaiInternetChaKiNai();
+
+    //return true
   }
 
   Future<bool> _sachhiKaiInternetChaKiNai() async {
